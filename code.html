@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/code.css">
+    <title>Document</title>
+    <style>
+        .otp-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .otp-input {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .otp-input input {
+            width: 40px;
+            height: 40px;
+            font-size: 24px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+
+        .otp-input input:focus {
+            outline: none;
+            border-color: #8946A6;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <!-- =======LOGIN HEADER ======= -->
+    <header>
+        <div class="container">
+            <nav class="nav">
+                <div class="right__nav">
+                    <a href="#">
+                        <img src="./img/Ellipse 2.svg" alt="">
+                    </a>
+                </div>
+                
+                <div class="left__nav">
+                    
+                    <button class="sign__btn">
+                        Sign in
+                    </button>
+                    
+                    <div class="nav__box">
+                        <img class="flag__img" src="./img/Ellipseuz 1.svg" alt="" width="24" height="24">
+                        <p class="desc">O'zbekcha</p>
+                        <img class="arrow__img" src="./img/arrow-down-1.png" alt="" width="9" height="8">
+                        
+                        <div class="modal">
+                            <ul class="modal__list">
+                                <li class="modal__item">
+                                    <img src="./img/Ellipseuz 1.svg" alt="flag in Uzbekistan" width="24" height="24">
+                                    <p class="modal__item-desc">
+                                        O'zbekcha
+                                    </p>
+                                </li>
+                                
+                                <li class="modal__item">
+                                    <img src="./img/Ellipserus1 (1).svg" alt="flag in Russia" width="24" height="24">
+                                    <p class="modal__item-desc">
+                                        Ruscha
+                                    </p>
+                                </li>
+                                
+                                <li class="modal__item">
+                                    <img src="./img/Ellipseeng 1.svg" alt="flag in England" width="24" height="24">
+                                    <p class="modal__item-desc">
+                                        English
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!--===== LOGIN MAIN ====== -->
+    
+    <main class="main">
+        <section class="form">
+            <div class="container ">
+                <a class="back__link" href="#">
+                    <img src="./img/eva_arrow-back-fill.svg" alt="arrow back icon " width="24" height="24">
+                    Saytga qaytish
+                </a>
+                
+                
+               <div class=" container container__form">
+                <form class="login__form" action="">
+                    <h1 class="login__headding">
+                        ERP orqali ro’yhatdan o’tish
+                    </h1>
+                    
+                    <p class="login__desc">
+                        Ushbu <span style="color:#8946A6;">99899 1234567</span> telefon raqamga tastiqlash kodi yuboriladi
+                    </p>
+                    
+                    <div class="otp-container">
+                        <div class="otp-input" id="otp-input">
+                            <input type="text" maxlength="1" id="digit-1" oninput="focusNext(1)" onkeydown="handleBackspace(1)" />
+                            <input type="text" maxlength="1" id="digit-2" oninput="focusNext(2)" onkeydown="handleBackspace(2)" />
+                            <input type="text" maxlength="1" id="digit-3" oninput="focusNext(3)" onkeydown="handleBackspace(3)" />
+                            <input type="text" maxlength="1" id="digit-4" oninput="focusNext(4)" onkeydown="handleBackspace(4)" />
+                            <input type="text" maxlength="1" id="digit-5" oninput="focusNext(5)" onkeydown="handleBackspace(5)" />
+                            <input type="text" maxlength="1" id="digit-6" oninput="focusNext(6)" onkeydown="handleBackspace(6)" />
+                        </div>
+                    </div>
+                
+                    <script>
+                        function focusNext(currentDigit) {
+                            const nextDigit = currentDigit + 1;
+                            if (nextDigit <= 6) {
+                                document.getElementById(`digit-${nextDigit}`).focus();
+                            } else {
+                                // All digits are entered, you can implement OTP validation here
+                                const otp = Array.from({ length: 6 }, (_, i) => document.getElementById(`digit-${i + 1}`).value).join('');
+                            }
+                        }
+                
+                        function handleBackspace(currentDigit) {
+                            const prevDigit = currentDigit - 1;
+                            if (prevDigit >= 1 && event.keyCode === 8 && document.getElementById(`digit-${currentDigit}`).value === "") {
+                                document.getElementById(`digit-${prevDigit}`).focus();
+                            }
+                        }
+                    </script>
+                    
+                    
+                    <a class="enter__link" href="#">
+                       Yuborish
+                    </a>
+                    
+                </form>
+               </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="footer">
+        <!-- <img src="./img/footer-bg.svg" alt=""> -->
+    </div>
+    <script src="./js/main.js">
+
+    
+    </script>
+</body>
+</html>
